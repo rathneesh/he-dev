@@ -1,3 +1,6 @@
+# For HE
+certs/
+
 # Logs
 logs
 *.log
