@@ -1,4 +1,4 @@
-# he-dev
+# Hubot Enterprise Developer Tools
 Ready-made scripts and configurations for Hubot Enterprise integration developers.
 
 # docker-compose development environment
@@ -45,7 +45,19 @@ cd he-dev
 
 ## 3. Mount your HE integration source code
 
-> TODO
+To mount your existing integration source code you need to export the
+**full path** in the `HE_INTEGRATION_LOCAL_PATH` environment variable.
+
+```bash
+# export HE_INTEGRATION_LOCAL_PATH=<full-path-to-src-directory>
+# Example for an integration in $HOME/workspace/hubot-myintegration
+export HE_INTEGRATION_LOCAL_PATH=$HOME/workspace/hubot-myintegration
+```
+
+This will allow `docker-compose` to mount the correct directory in your 
+host machine to the `/integration` directory of the docker container
+which is used as a convention to _load and install_ the source code
+of a Hubot Enterprise integration. 
 
 ## 4. Run containers
 
