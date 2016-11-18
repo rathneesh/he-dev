@@ -24,11 +24,11 @@
 version: '2'
 services:
   identity-portal:
-    # TODO: change to v0.1.1
     image: chatopshpe/he-identity-portal:v0.1.1
     networks:
       - proxy_net
       - idp_net
+      - auth_net
     environment:
       HE_REDIS_HOST: transient-datastore
       HE_REDIS_PORT: 6379
@@ -55,8 +55,38 @@ services:
     image: redis:3.2-alpine
     networks:
       - idp_net
-
+  auth:
+    # TODO: change to a versioned image
+    image: chatopshpe/he-auth-service:dev
+    environment:
+      HE_ISSUER: "<this-would-be-you>"
+      HE_AUDIENCE: "<your-products-audience>"
+      # TODO: make this not required
+      HE_AUTH_SSL_PASS: ""
+      VAULT_DEV_ROOT_TOKEN_ID: myroot
+      HE_VAULT_HOST: vault
+      HE_VAULT_PORT: 8200
+      HE_IDENTITY_PORTAL_ENDPOINT: https://localhost
+      HE_IDENTITY_WS_ENDPOINT: ws://identity-portal:3001
+    depends_on:
+      - vault
+      - identity-portal
+    volumes:
+      - ./certs:/usr/src/app/certs
+    networks:
+      - auth_net
+      - vault_net
+  vault:
+    image: vault:0.6.1
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: myroot
+      # need to bind to 0.0.0.0 so that it accepts remote connections (!localhost)
+      VAULT_DEV_LISTEN_ADDRESS: 0.0.0.0:8200
+    networks:
+      - vault_net
 # TODO: limit visibility of docker containers if possible.
 networks:
   proxy_net:
   idp_net:
+  auth_net:
+  vault_net:
