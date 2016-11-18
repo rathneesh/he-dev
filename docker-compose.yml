@@ -23,6 +23,20 @@
 # Tested with docker-compose version 1.7.0
 version: '2'
 services:
+  he:
+    # image: chatopshpe/hubot-enterprise:dev
+    image: hubotenterprise_he
+    environment:
+      HE_ENABLE_AUTH: 1
+      HE_AUTH_SERVICE_ENDPOINT: https://auth:3000
+      HUBOT_LOG_LEVEL: debug
+      ADAPTER: slack
+      SLACK_APP_TOKEN:
+      HUBOT_SLACK_TOKEN:
+    networks:
+      - auth_net
+    volumes:
+      - $HE_INTEGRATION_LOCAL_PATH:/integration
   identity-portal:
     image: chatopshpe/he-identity-portal:v0.1.1
     networks:
