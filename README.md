@@ -34,14 +34,17 @@ git clone https://github.com/eedevops/he-dev.git
 cd he-dev
 ```
 
-* Generate `ssh` certificates and key pairs:
+* Generate configuration
 
 ```bash
-# This is a bash shell script that will generate each cert / key pair.
-# Recommended for dev: do not enter passphrases.
-# Remember that you must have openssl installed.
-./gen_certs.sh 
+./init.sh
 ```
+This will do the following:
+
+1. Generates `ssh` certificates and key pairs under `./certs`. We recommend 
+   that you **do not** enter any **passphrases or challenges** for the certs / keys.
+2. Generates a `.env` file in your root which you can fill-in with your 
+   integration-specific environment variables.
 
 ## 3. Mount your HE integration source code
 

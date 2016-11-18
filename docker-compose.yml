@@ -25,6 +25,7 @@ version: '2'
 services:
   he:
     image: chatopshpe/hubot-enterprise:dev
+    env_file: .env
     environment:
       HE_ENABLE_AUTH: 1
       HE_AUTH_SERVICE_ENDPOINT: https://auth:3000

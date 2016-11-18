@@ -1,5 +1,6 @@
 # For HE
 certs/
+.env
 
 # Logs
 logs
