@@ -44,7 +44,26 @@ This will do the following:
 1. Generates `ssh` certificates and key pairs under `./certs`. We recommend 
    that you **do not** enter any **passphrases or challenges** for the certs / keys.
 2. Generates a `.env` file in your root which you can fill-in with your 
-   integration-specific environment variables.
+   integration-specific environment variables. This is a sample `.env` file to
+   setup a deployment that requires http proxy values:
+   
+   ```bash
+    ...
+    # Proxy settings
+    http_proxy=http://myproxy.example.com:8080
+    https_proxy=http://myproxy.example.com:8080
+    HTTP_PROXY=http://myproxy.example.com:8080
+    HTTPS_PROXY=http://myproxy.example.com:8080
+    # HE needs to resolve auth
+    NO_PROXY=localhost,127.0.0.1,auth
+    no_proxy=localhost,127.0.0.1,auth
+    # Slack tokens
+    SLACK_APP_TOKEN=....
+    HUBOT_SLACK_TOKEN=...
+    # Point to integration code
+    HE_INTEGRATION_LOCAL_PATH=/root/hubot-sm
+    ...
+   ```
 
 ## 3. Mount your HE integration source code
 
@@ -55,6 +74,14 @@ To mount your existing integration source code you need to export the
 # export HE_INTEGRATION_LOCAL_PATH=<full-path-to-src-directory>
 # Example for an integration in $HOME/workspace/hubot-myintegration
 export HE_INTEGRATION_LOCAL_PATH=$HOME/workspace/hubot-myintegration
+```
+
+You may opt to edit the `.env` file with the `HE_INTEGRATION_LOCAL_PATH`
+**instead** of exporting the value in your environment:
+
+```bash
+# .env file read by docker-compose "he" container
+HE_INTEGRATION_LOCAL_PATH=/your/path/workspace/hubot-myintegration
 ```
 
 This will allow `docker-compose` to mount the correct directory in your 
