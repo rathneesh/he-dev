@@ -23,24 +23,41 @@
 # Create an ssl certificate and key and place them in a directory called certs.
 # These will be used by the express server.
 
-mkdir -p certs && \
+certs_dir="certs"
 
-cd certs && \
+answer="Y"
+if [ -e "$certs_dir" ]; then
+    echo "Certificate directory ($certs_dir) already exists."
+    echo "Would you like to overwrite all the certificates in this directory?"
+    echo "WARNING: this operation cannot be undone."
+    echo "Type Y/y for 'yes' or any other character for 'no' followed by [ENTER]"
+    read -n 1 answer
+    echo ""
+fi
 
-openssl req -nodes -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 9999 && \
+if [ "$answer" == "Y" ] || [ "$answer" == "y" ]; then
 
-# Create key pairs to encrypt / decrypt JWE token_urls.
+    mkdir -p certs && \
 
-openssl req -keyform PEM -nodes -newkey rsa:4096 -keyout jwe_token_url.pem \
- -pubkey -out jwe_token_url_pub.pem && \
+    cd certs && \
 
-# Create key pairs to encrypt / decrypt secrets (JWE).
+    openssl req -nodes -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 9999 && \
 
-openssl req -keyform PEM -nodes -newkey rsa:4096 -keyout jwe_secrets.pem \
- -pubkey -out jwe_secrets_pub.pem && \
+    # Create key pairs to encrypt / decrypt JWE token_urls.
 
-# Create key pairs to sign / verify jwt tokens.
+    openssl req -keyform PEM -nodes -newkey rsa:4096 -keyout jwe_token_url.pem \
+    -pubkey -out jwe_token_url_pub.pem && \
 
-openssl req -keyform PEM -nodes -newkey rsa:4096 -keyout jwt_token.pem -pubkey -out jwt_token_pub.pem
+    # Create key pairs to encrypt / decrypt secrets (JWE).
+
+    openssl req -keyform PEM -nodes -newkey rsa:4096 -keyout jwe_secrets.pem \
+    -pubkey -out jwe_secrets_pub.pem && \
+
+    # Create key pairs to sign / verify jwt tokens.
+
+    openssl req -keyform PEM -nodes -newkey rsa:4096 -keyout jwt_token.pem -pubkey -out jwt_token_pub.pem
+else
+    echo "INFO: No new certificates were generated."
+fi
 
 exit $?

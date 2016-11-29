@@ -25,7 +25,9 @@ version: '2'
 services:
   he:
     image: chatopshpe/hubot-enterprise:v0.3.3
-    env_file: .env
+    env_file: 
+      - .env
+      - .env_proxy
     environment:
       HE_ENABLE_AUTH: 1
       HE_AUTH_SERVICE_ENDPOINT: https://auth:3000
@@ -39,6 +41,8 @@ services:
       - $HE_INTEGRATION_LOCAL_PATH:/integration
   identity-portal:
     image: chatopshpe/he-identity-portal:v0.1.1
+    env_file: 
+      - .env_proxy    
     networks:
       - proxy_net
       - idp_net
@@ -72,6 +76,8 @@ services:
   auth:
     # TODO: change to a versioned image
     image: chatopshpe/he-auth-service:v0.1.2
+    env_file: 
+      - .env_proxy    
     environment:
       HE_ISSUER: "<this-would-be-you>"
       HE_AUDIENCE: "<your-products-audience>"

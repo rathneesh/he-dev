@@ -49,14 +49,6 @@ This will do the following:
    
    ```bash
     ...
-    # Proxy settings
-    http_proxy=http://myproxy.example.com:8080
-    https_proxy=http://myproxy.example.com:8080
-    HTTP_PROXY=http://myproxy.example.com:8080
-    HTTPS_PROXY=http://myproxy.example.com:8080
-    # HE needs to resolve auth
-    NO_PROXY=localhost,127.0.0.1,auth
-    no_proxy=localhost,127.0.0.1,auth
     # Slack tokens
     SLACK_APP_TOKEN=....
     HUBOT_SLACK_TOKEN=...
@@ -64,7 +56,21 @@ This will do the following:
     HE_INTEGRATION_LOCAL_PATH=/root/hubot-sm
     ...
    ```
+3. Generates a `.env_proxy` file which will be used by containers to 
+   specify proxy environment variables (e.g. `http_proxy`, `no_proxy`, etc.).
+   Here is a sample file:
 
+   ```bash
+    # Proxy settings
+    http_proxy=http://myproxy.example.com:8080
+    https_proxy=http://myproxy.example.com:8080
+    HTTP_PROXY=http://myproxy.example.com:8080
+    HTTPS_PROXY=http://myproxy.example.com:8080
+    # HE needs to resolve auth
+    NO_PROXY=localhost,127.0.0.1,auth,vault
+    no_proxy=localhost,127.0.0.1,auth,vault
+   ```
+   
 ## 3. Mount your HE integration source code
 
 To mount your existing integration source code you need to export the
