@@ -75,7 +75,7 @@ services:
       - idp_net
   auth:
     # TODO: change to a versioned image
-    image: chatopshpe/he-auth-service:v0.1.2
+    image: chatopshpe/he-auth-service:v0.1.3
     env_file: 
       - .env_proxy    
     environment:
