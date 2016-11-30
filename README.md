@@ -70,8 +70,18 @@ This will do the following:
     NO_PROXY=localhost,127.0.0.1,auth,vault
     no_proxy=localhost,127.0.0.1,auth,vault
    ```
-   
-## 3. Mount your HE integration source code
+## 3. Write your HE integration source code (optional)
+
+> If you already have an existing integration you may
+> skip to step 4.
+
+The purpose of the tools in this repo is to get you up-and-running
+with developing HE integrations. To generate the skeleton of your
+HE-enabled integration, you may use our [HE generator](https://github.com/eedevops/generator-hubot-enterprise).
+The instructions to do so are outlined in the HE [wiki](https://github.com/eedevops/hubot-enterprise/wiki/bootstrap-integration#new-integration-quickstart).
+Once you have set this up, you may continue to step 4.
+
+## 4. Mount your HE integration source code
 
 To mount your existing integration source code you need to export the
 **full path** in the `HE_INTEGRATION_LOCAL_PATH` environment variable.
@@ -95,7 +105,7 @@ host machine to the `/integration` directory of the docker container
 which is used as a convention to _load and install_ the source code
 of a Hubot Enterprise integration. 
 
-## 4. Run containers
+## 5. Run containers
 
 ```bash
 # To see the output
