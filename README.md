@@ -49,14 +49,6 @@ This will do the following:
    
    ```bash
     ...
-    # Proxy settings
-    http_proxy=http://myproxy.example.com:8080
-    https_proxy=http://myproxy.example.com:8080
-    HTTP_PROXY=http://myproxy.example.com:8080
-    HTTPS_PROXY=http://myproxy.example.com:8080
-    # HE needs to resolve auth
-    NO_PROXY=localhost,127.0.0.1,auth
-    no_proxy=localhost,127.0.0.1,auth
     # Slack tokens
     SLACK_APP_TOKEN=....
     HUBOT_SLACK_TOKEN=...
@@ -64,8 +56,32 @@ This will do the following:
     HE_INTEGRATION_LOCAL_PATH=/root/hubot-sm
     ...
    ```
+3. Generates a `.env_proxy` file which will be used by containers to 
+   specify proxy environment variables (e.g. `http_proxy`, `no_proxy`, etc.).
+   Here is a sample file:
 
-## 3. Mount your HE integration source code
+   ```bash
+    # Proxy settings
+    http_proxy=http://myproxy.example.com:8080
+    https_proxy=http://myproxy.example.com:8080
+    HTTP_PROXY=http://myproxy.example.com:8080
+    HTTPS_PROXY=http://myproxy.example.com:8080
+    # HE needs to resolve auth
+    NO_PROXY=localhost,127.0.0.1,auth,vault
+    no_proxy=localhost,127.0.0.1,auth,vault
+   ```
+## 3. Write your HE integration source code (optional)
+
+> If you already have an existing integration you may
+> skip to step 4.
+
+The purpose of the tools in this repo is to get you up-and-running
+with developing HE integrations. To generate the skeleton of your
+HE-enabled integration, you may use our [HE generator](https://github.com/eedevops/generator-hubot-enterprise).
+The instructions to do so are outlined in the HE [wiki](https://github.com/eedevops/hubot-enterprise/wiki/bootstrap-integration#new-integration-quickstart).
+Once you have set this up, you may continue to step 4.
+
+## 4. Mount your HE integration source code
 
 To mount your existing integration source code you need to export the
 **full path** in the `HE_INTEGRATION_LOCAL_PATH` environment variable.
@@ -89,7 +105,7 @@ host machine to the `/integration` directory of the docker container
 which is used as a convention to _load and install_ the source code
 of a Hubot Enterprise integration. 
 
-## 4. Run containers
+## 5. Run containers
 
 ```bash
 # To see the output

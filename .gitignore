@@ -1,6 +1,8 @@
 # For HE
 certs/
 .env
+.env_proxy
+*.bak
 
 # Logs
 logs
