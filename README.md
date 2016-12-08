@@ -90,7 +90,15 @@ you may opt to do **one** of the following:
 2. _Use a sample integration_:
 
     This repo contains [sample integrations](sample_integrations) that showcase the use of Hubot Enterprise
-    API bindings. If you choose to do this you may continue to the following step (4).
+    API bindings. If you choose to do this you need to run `npm install` in the directory of that integration.
+    Example:
+    
+    ```bash
+    cd sample_integrations/hubot-idmauth
+    npm install
+    ```
+    
+    Now you may proceed to step 4.
 
 ## 4. Mount your HE integration source code
 
