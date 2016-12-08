@@ -37,6 +37,9 @@ module.exports = (robot) ->
     endpoint: 
       url: "http://myidmserver.example.com"
       verb: "POST"
+    # tenant:
+    #   username: "admin"
+    #   password: "admin"
   auth_info = robot.e.auth.generate_idm_auth idm_auth_params
 
   # Register integration with previous configurations
