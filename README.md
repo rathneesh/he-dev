@@ -70,16 +70,27 @@ This will do the following:
     NO_PROXY=localhost,127.0.0.1,auth,vault
     no_proxy=localhost,127.0.0.1,auth,vault
    ```
+
 ## 3. Write your HE integration source code (optional)
 
 > If you already have an existing integration you may
 > skip to step 4.
 
 The purpose of the tools in this repo is to get you up-and-running
-with developing HE integrations. To generate the skeleton of your
-HE-enabled integration, you may use our [HE generator](https://github.com/eedevops/generator-hubot-enterprise).
-The instructions to do so are outlined in the HE [wiki](https://github.com/eedevops/hubot-enterprise/wiki/bootstrap-integration#new-integration-quickstart).
-Once you have set this up, you may continue to step 4.
+with developing HE integrations. If you don't have an existing integration
+you may opt to do **one** of the following:
+
+1. _Generate a skeleton using generator_:
+    
+    To generate the skeleton of your
+    HE-enabled integration, you may use our [HE generator](https://github.com/eedevops/generator-hubot-enterprise).
+    The instructions to do so are outlined in the HE [wiki](https://github.com/eedevops/hubot-enterprise/wiki/bootstrap-integration#new-integration-quickstart).
+    Once you have set this up, you may continue to step 4.
+
+2. _Use a sample integration_:
+
+    This repo contains [sample integrations](sample_integrations) that showcase the use of Hubot Enterprise
+    API bindings. You may point to the full path of one of those integrations (as in step 4).
 
 ## 4. Mount your HE integration source code
 
