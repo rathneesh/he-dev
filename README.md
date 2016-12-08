@@ -90,7 +90,7 @@ you may opt to do **one** of the following:
 2. _Use a sample integration_:
 
     This repo contains [sample integrations](sample_integrations) that showcase the use of Hubot Enterprise
-    API bindings. You may point to the full path of one of those integrations (as in step 4).
+    API bindings. If you choose to do this you may continue to the following step (4).
 
 ## 4. Mount your HE integration source code
 
