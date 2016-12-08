@@ -24,7 +24,7 @@
 version: '2'
 services:
   he:
-    image: chatopshpe/hubot-enterprise:dev
+    image: chatopshpe/hubot-enterprise:v0.4.0
     env_file: 
       - .env
       - .env_proxy
@@ -40,7 +40,7 @@ services:
     volumes:
       - $HE_INTEGRATION_LOCAL_PATH:/integration
   identity-portal:
-    image: chatopshpe/he-identity-portal:v0.1.2
+    image: chatopshpe/he-identity-portal:v0.2.0
     env_file: 
       - .env_proxy    
     networks:
