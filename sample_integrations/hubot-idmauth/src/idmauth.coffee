@@ -33,14 +33,13 @@ module.exports = (robot) ->
     long_desc: '...'
 
   # Convenience method for developer to generate a IDM Auth config
-  idm_auth_params = 
-    endpoint: 
-      url: "http://myidmserver.example.com"
-      verb: "POST"
-    # tenant:
-    #   username: "admin"
-    #   password: "admin"
-  auth_info = robot.e.auth.generate_idm_auth idm_auth_params
+  url = "http://myidmserver.example.com"
+  # Tenant info is optional. If you omit it then it will be asked at the portal form.
+  tenant_name = "chatOps"
+  tenant_username = "idmUser1"
+  tenant_password = "password"
+  
+  auth_info = robot.e.auth.create_idm_auth_config url, tenant_username, tenant_password, tenant_name
 
   # Register integration with previous configurations
   robot.e.registerIntegration bot_info, auth_info  
