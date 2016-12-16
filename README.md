@@ -100,10 +100,10 @@ you may opt to do **one** of the following:
     
     Now you may proceed to step 4.
 
-    > **Note**. If you are writing an integration with `IDM` authentication and you need
-    > a test server, you may use a mock server that comes with the `he-auth-service`.
-    > To enable it, uncomment the line with `HE_AUTH_MOCK_AUTH: "true"` in the docker compose
-    > [file](/docker-compose.yml).
+    > **Note**. If you are writing an integration with `IDM` authentication, this
+    > environment is configured with a **mock** `IDM` server out of the box.
+    > To disable it, comment or remove the line `HE_AUTH_MOCK_AUTH: "true"` from the 
+    > docker compose [file](/docker-compose.yml).
 
 ## 4. Mount your HE integration source code
 

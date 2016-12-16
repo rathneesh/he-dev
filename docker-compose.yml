@@ -78,9 +78,8 @@ services:
     env_file: 
       - .env_proxy  
     environment:
-      # Enable the following line if you just want 
-      # to test with a mock IDM server that comes pre-packaged.
-      # HE_AUTH_MOCK_AUTH: "true"
+      # Uncomment the following line to disable mock IDM server.
+      HE_AUTH_MOCK_AUTH: "true"
       HE_ISSUER: "<this-would-be-you>"
       HE_AUDIENCE: "<your-products-audience>"
       # TODO: make this not required
