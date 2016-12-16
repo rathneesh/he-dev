@@ -24,7 +24,7 @@
 version: '2'
 services:
   he:
-    image: chatopshpe/hubot-enterprise:v0.4.1
+    image: chatopshpe/hubot-enterprise:v0.4.2
     env_file: 
       - .env
       - .env_proxy
@@ -40,7 +40,7 @@ services:
     volumes:
       - $HE_INTEGRATION_LOCAL_PATH:/integration
   identity-portal:
-    image: chatopshpe/he-identity-portal:v0.2.0
+    image: chatopshpe/he-identity-portal:v0.2.1
     env_file: 
       - .env_proxy    
     networks:
@@ -74,12 +74,13 @@ services:
     networks:
       - idp_net
   auth:
-    # TODO: change to a versioned image
-    image: chatopshpe/he-auth-service:v0.1.5
+    image: chatopshpe/he-auth-service:v0.1.6
     env_file: 
       - .env_proxy  
     environment:
-      HE_AUTH_MOCK_AUTH: "true"
+      # Enable the following line if you just want 
+      # to test with a mock IDM server that comes pre-packaged.
+      # HE_AUTH_MOCK_AUTH: "true"
       HE_ISSUER: "<this-would-be-you>"
       HE_AUDIENCE: "<your-products-audience>"
       # TODO: make this not required
