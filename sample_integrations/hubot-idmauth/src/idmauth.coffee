@@ -38,8 +38,10 @@ module.exports = (robot) ->
   tenant_name = "chatOps"
   tenant_username = "idmUser1"
   tenant_password = "password"
-  
-  auth_info = robot.e.auth.create_idm_auth_config url, tenant_username, tenant_password, tenant_name
+  ttl = "5m"
+  auth_info = robot.e.auth.create_idm_auth_config url, tenant_username, tenant_password, tenant_name, ttl
+
+  robot.logger.info auth_info
 
   # Register integration with previous configurations
   robot.e.registerIntegration bot_info, auth_info  
