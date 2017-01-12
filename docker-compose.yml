@@ -24,7 +24,7 @@
 version: '2'
 services:
   he:
-    image: chatopshpe/hubot-enterprise:master
+    image: chatopshpe/hubot-enterprise:v0.4.4
     env_file: 
       - .env
       - .env_proxy
