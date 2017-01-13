@@ -40,7 +40,7 @@ services:
     volumes:
       - $HE_INTEGRATION_LOCAL_PATH:/integration
   identity-portal:
-    image: chatopshpe/he-identity-portal:v0.2.2
+    image: chatopshpe/he-identity-portal:v0.2.3
     env_file: 
       - .env_proxy    
     networks:
@@ -48,6 +48,7 @@ services:
       - idp_net
       - auth_net
     environment:
+      HE_AUTH_SERVICE_ENDPOINT: https://auth:3000
       HE_REDIS_HOST: transient-datastore
       HE_REDIS_PORT: 6379
       HE_AUDIENCE: "<your-products-audience>"
@@ -74,7 +75,7 @@ services:
     networks:
       - idp_net
   auth:
-    image: chatopshpe/he-auth-service:v0.1.8
+    image: chatopshpe/he-auth-service:v0.1.9
     env_file: 
       - .env_proxy  
     environment:
